@@ -5,23 +5,23 @@
 <robot
   name="dexco">
 
-  <!-- Used for fixing robot to Gazebo 'base_link' -->
+  <!-- Used for fixing robot to Gazebo 'hand_base_link' -->
   <!-- <link name="world"/>
 
   <joint name="fixed" type="fixed">
     <parent link="world"/>
-    <child link="base_link"/>
+    <child link="hand_base_link"/>
   </joint> -->
-  <!-- Fixed joint to attach base_link to the world -->
-  <link name="base_link"/>
+  <!-- Fixed joint to attach hand_base_link to the world -->
+  <link name="hand_base_link"/>
   <!-- <joint name="world_joint" type="fixed">
     <parent link="ground_plane"/>
-    <child link="base_link"/>
+    <child link="hand_base_link"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
   </joint> -->
   <joint name="base" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0"/>
-    <parent link="base_link"/>
+    <parent link="hand_base_link"/>
     <child link="palm"/>
   </joint>
   <link name="palm">
@@ -67,7 +67,7 @@
       <origin
         xyz="-0.015482 -0.0012876 -0.011827"
         rpy="0 0 0" />
-      <mass value="0.08"/> <!-- Reduced mass -->
+      <mass value="0.03"/> <!-- Reduced mass -->
       <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
     </inertial>
     <visual>
@@ -118,8 +118,8 @@
       <origin
         xyz="0.00036172 7.7716E-16 0.0047824"
         rpy="0 0 0" />
-      <mass value="0.02"/> <!-- Reduced mass -->
-      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.05"/> <!-- Approximate values -->
+      <mass value="0.02"/>
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.05"/>
 
     </inertial>
     <visual>
@@ -146,8 +146,8 @@
       </geometry>
     </collision>
     <gazebo>
-      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
-      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+      <mu1>0</mu1>
+      <mu2>0</mu2>
     </gazebo>
 
   </link>
@@ -170,7 +170,7 @@
       <origin
         xyz="-1.7518E-05 0.0078276 0.020901"
         rpy="0 0 0" />
-      <mass value="0.08"/> <!-- Reduced mass -->
+      <mass value="0.03"/> <!-- Reduced mass -->
       <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
     </inertial>
     <visual>
@@ -221,12 +221,12 @@
       <origin
         xyz="-1.6118E-05 0.0075224 0.017154"
         rpy="0 0 0" />
-      <mass value="0.08"/> <!-- Reduced mass -->
+      <mass value="0.03"/> <!-- Reduced mass -->
       <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
     </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0.0136 0 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -272,7 +272,7 @@
       <origin
         xyz="0.015482 -0.0012254 -0.011827"
         rpy="0 0 0" />
-      <mass value="0.08"/> <!-- Reduced mass -->
+      <mass value="0.03"/> <!-- Reduced mass -->
       <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
     </inertial>
     <visual>
@@ -326,8 +326,8 @@
       <origin
         xyz="-0.00036172 -2.2204E-16 0.0047824"
         rpy="0 0 0" />
-      <mass value="0.02"/> <!-- Reduced mass -->
-      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.05"/> <!-- Approximate values -->
+      <mass value="0.02"/>
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.05"/>
     </inertial>
     <visual>
       <origin
@@ -353,8 +353,8 @@
       </geometry>
     </collision>
     <gazebo>
-      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
-      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+      <mu1>0</mu1>
+      <mu2>0</mu2>
     </gazebo>
 
   </link>
@@ -377,7 +377,7 @@
       <origin
         xyz="1.7518E-05 -0.0078321 0.020868"
         rpy="0 0 0" />
-      <mass value="0.08"/> <!-- Reduced mass -->
+      <mass value="0.03"/> <!-- Reduced mass -->
       <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
     </inertial>
     <visual>
@@ -428,12 +428,12 @@
       <origin
         xyz="1.6118E-05 -0.0075224 0.017154"
         rpy="0 0 0" />
-      <mass value="0.08"/> <!-- Reduced mass -->
+      <mass value="0.03"/> <!-- Reduced mass -->
       <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
     </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="-0.0136 0 0"
         rpy="0 0 0" />
       <geometry>
         <mesh

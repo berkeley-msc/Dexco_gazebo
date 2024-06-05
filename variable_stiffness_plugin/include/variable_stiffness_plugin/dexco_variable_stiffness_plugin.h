@@ -109,8 +109,8 @@ namespace gazebo
       auto currentPositionl_LJ2 = -0.0135*currentPositionq_LJ1+0.015*currentPositionq_LJ2;
       auto currentPositionl_LJ3 = 0.015*currentPositionq_LJ3;
       auto currentPositionl_RJ0 = currentPositionq_RJ0;
-      auto currentPositionl_RJ1 = 0.0135*currentPositionq_RJ1+0.015*currentPositionq_RJ2;
-      auto currentPositionl_RJ2 = -0.0135*currentPositionq_RJ1+0.015*currentPositionq_RJ2;
+      auto currentPositionl_RJ1 = -0.0135*currentPositionq_RJ1+0.015*currentPositionq_RJ2;
+      auto currentPositionl_RJ2 = 0.0135*currentPositionq_RJ1+0.015*currentPositionq_RJ2;
       auto currentPositionl_RJ3 = 0.015*currentPositionq_RJ3;
 
       double q0_LJ0 = this->externalJointPositions["LJ0"];
@@ -127,8 +127,8 @@ namespace gazebo
       auto l0_LJ2 = -0.0135*q0_LJ1 + 0.015*q0_LJ2;
       auto l0_LJ3 = 0.015*q0_LJ3;
       auto l0_RJ0 = -l0_LJ0;
-      auto l0_RJ1 = 0.0135*q0_RJ1 + 0.015*q0_RJ2;
-      auto l0_RJ2 = -0.0135*q0_RJ1 + 0.015*q0_RJ2;
+      auto l0_RJ1 = -0.0135*q0_RJ1 + 0.015*q0_RJ2;
+      auto l0_RJ2 = 0.0135*q0_RJ1 + 0.015*q0_RJ2;
       auto l0_RJ3 = 0.015*q0_RJ3;
 
       auto delta_l_LJ0 = currentPositionl_LJ0 - l0_LJ0;
@@ -160,7 +160,7 @@ namespace gazebo
       auto effortq_LJ2 = 0.015*effortl_LJ1+0.015*effortl_LJ2;
       auto effortq_LJ3 = 0.015*effortl_LJ3;
       auto effortq_RJ0 = effortl_RJ0;
-      auto effortq_RJ1 = 0.0135*effortl_RJ1-0.0135*effortl_RJ2;
+      auto effortq_RJ1 = -0.0135*2*effortl_RJ1+0.0135*2*effortl_RJ2;
       auto effortq_RJ2 = 0.015*effortl_RJ1+0.015*effortl_RJ2;
       auto effortq_RJ3 = 0.015*effortl_RJ3;
 
