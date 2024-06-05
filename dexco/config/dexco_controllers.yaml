@@ -1,0 +1,46 @@
+dexco:
+    joint_state_controller:
+      type: joint_state_controller/JointStateController
+      publish_rate: 50
+
+    jointq1_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: LJ0
+      pid: {p: 10.0, i: 2, d: 0.01}
+      
+    jointq2_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: LJ1
+      pid: {p: 10.0, i: 2, d: 0.01}
+
+    jointq3_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: LJ2
+      pid: {p: 10.0, i: 2, d: 0.01}
+
+    jointq4_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: LJ3
+      pid: {p: 10.0, i: 2, d: 0.01}
+
+
+    jointq5_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: RJ0
+      pid: {p: 10.0, i: 10, d: 0}
+      
+    jointq6_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: RJ1
+      pid: {p: 10.0, i: 2, d: 0.01}
+
+    jointq7_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: RJ2
+      pid: {p: 10.0, i: 2, d: 0.01}
+
+    jointq8_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: RJ3
+      pid: {p: 10.0, i: 2, d: 0.01}
+    # Add more controllers for other joints if needed

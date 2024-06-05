@@ -1,0 +1,13 @@
+<launch>
+  <!-- Load the URDF into the parameter server -->
+  <param name="robot_description" command="cat $(find dexco)/urdf/dexco.urdf"/>
+
+  <!-- Publish joint states with GUI -->
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+
+  <!-- Combine joint values -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- Show in Rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find dexco)/rviz/gripper.rviz"/>
+</launch>

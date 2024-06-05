@@ -1,0 +1,8 @@
+<launch>
+  <!-- Load the URDF into the parameter server -->
+  <param name="robot_description" command="cat $(find dexco)/urdf/cylinder.urdf"/>
+
+  <!-- Run a node to spawn the URDF model -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model cylinder_model -param robot_description"/>
+</launch>

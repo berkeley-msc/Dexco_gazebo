@@ -1,0 +1,22 @@
+<launch>
+  <!-- Load the controller configurations -->
+  <rosparam command="load" file="$(find dexco)/config/test_controllers.yaml"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" ns="/test" args="joint_state_controller
+					  joint1_position_controller"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	respawn="false" output="screen">
+    <!-- <remap from="/joint_states" to="/test/joint_states" /> -->
+  </node>
+
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+
+  <!-- load the transformer to transform the joint state from gui to the control command-->
+  <node name="test_joint_state_to_command" pkg="joint_state_to_command" type="test_joint_state_to_command" output="screen"/>
+
+
+</launch>

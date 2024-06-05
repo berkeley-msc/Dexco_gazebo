@@ -1,0 +1,32 @@
+<launch>
+  <!-- Load the controller configurations -->
+  <!-- <rosparam command="load" file="$(find dexco)/config/dexco_controllers.yaml"/> -->
+
+  <!-- load the controllers -->
+  <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" ns="/dexco" args="joint_state_controller
+					  jointq1_position_controller
+            jointq2_position_controller
+            jointq3_position_controller
+            jointq4_position_controller
+            jointq5_position_controller
+            jointq6_position_controller
+            jointq7_position_controller
+            jointq8_position_controller"/> -->
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	respawn="false" output="screen">
+  </node> -->
+
+  <!-- Load the URDF into the parameter server -->
+  <param name="robot_description" command="cat $(find dexco)/urdf/dexco.urdf"/>
+
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+
+  
+  <!-- load the transformer to transform the joint state from gui to the control command-->
+  <!-- <node name="dexco_joint_state_to_command" pkg="joint_state_to_command" type="dexco_joint_state_to_command" output="screen"/> -->
+
+
+</launch>

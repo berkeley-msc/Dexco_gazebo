@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="dexco">
+
+  <!-- Used for fixing robot to Gazebo 'base_link' -->
+  <!-- <link name="world"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint> -->
+  <!-- Fixed joint to attach base_link to the world -->
+  <link name="base_link"/>
+  <!-- <joint name="world_joint" type="fixed">
+    <parent link="ground_plane"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint> -->
+  <joint name="base" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="palm"/>
+  </joint>
+  <link name="palm">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/Vbase_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin
+        xyz="0.00071947 0.016915 0.01936"
+        rpy="0 0 0" />
+      <mass value="5"/> <!-- Reduced mass -->
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.4"/> <!-- Approximate values -->
+
+    </inertial>
+    <gazebo>
+      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
+      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+    </gazebo>
+
+  </link>
+  <link name="LL0">
+    <inertial>
+      <origin
+        xyz="-0.015482 -0.0012876 -0.011827"
+        rpy="0 0 0" />
+      <mass value="0.08"/> <!-- Reduced mass -->
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/VLL0.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 0.85" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/LL0.STL" />
+      </geometry>
+    </collision>
+    <gazebo>
+      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
+      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+    </gazebo>
+
+  </link>
+  <joint name="LJ0"
+    type="prismatic">
+    <origin
+      xyz="-0.029536 0.0133 0.06016"
+      rpy="0 -0.5236 0" />
+    <parent
+      link="palm" />
+    <child
+      link="LL0" />
+    <axis
+      xyz="-0.86603 0 0.5" />
+    <limit lower="-0.022" upper="0" effort="200" velocity="1"/> <!-- Adjusted limits and effort -->
+    <dynamics damping="0.1" friction="0.5"/>
+  </joint>
+  <link  name="LL1">
+    <inertial>
+      <origin
+        xyz="0.00036172 7.7716E-16 0.0047824"
+        rpy="0 0 0" />
+      <mass value="0.02"/> <!-- Reduced mass -->
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.05"/> <!-- Approximate values -->
+
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/VLL1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 0.85" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/LL1.STL" />
+      </geometry>
+    </collision>
+    <gazebo>
+      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
+      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+    </gazebo>
+
+  </link>
+  <joint  name="LJ1"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="LL0" />
+    <child
+      link="LL1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit lower="-0.37" upper="0.37" effort="200" velocity="1"/> <!-- Adjusted limits and effort -->
+    <dynamics damping="0" friction="0.4"/>
+  </joint>
+  <link  name="LL2">
+    <inertial>
+      <origin
+        xyz="-1.7518E-05 0.0078276 0.020901"
+        rpy="0 0 0" />
+      <mass value="0.08"/> <!-- Reduced mass -->
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/VLL2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 0.85" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/LL2.STL" />
+      </geometry>
+    </collision>
+    <gazebo>
+      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
+      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+    </gazebo>
+
+  </link>
+  <joint  name="LJ2"
+    type="revolute">
+    <origin
+      xyz="0.00135 0 0.0094651"
+      rpy="-0.21509 0 1.5708" />
+    <parent
+      link="LL1" />
+    <child
+      link="LL2" />
+    <axis
+      xyz="-1 0 -0" />
+    <limit lower="-1.57" upper="0" effort="200" velocity="1"/> <!-- Adjusted limits and effort -->
+    <dynamics damping="0" friction="0.4"/>
+  </joint>
+  <link  name="LL3">
+    <inertial>
+      <origin
+        xyz="-1.6118E-05 0.0075224 0.017154"
+        rpy="0 0 0" />
+      <mass value="0.08"/> <!-- Reduced mass -->
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/VLL3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 0.85" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/LL3.STL" />
+      </geometry>
+    </collision>
+    <gazebo>
+      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
+      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+    </gazebo>
+
+  </link>
+  <joint  name="LJ3"
+    type="revolute">
+    <origin
+      xyz="-0.00033506 0 0.052059"
+      rpy="-0.57031 0 0" />
+    <parent
+      link="LL2" />
+    <child
+      link="LL3" />
+    <axis
+      xyz="-1 0 0" />
+    <limit lower="-1.57" upper="0" effort="200" velocity="1"/> <!-- Adjusted limits and effort -->
+    <dynamics damping="0" friction="0.4"/>
+  </joint>
+  <link  name="RL0">
+    <inertial>
+      <origin
+        xyz="0.015482 -0.0012254 -0.011827"
+        rpy="0 0 0" />
+      <mass value="0.08"/> <!-- Reduced mass -->
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/VRL0.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 0.85" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/RL0.STL" />
+      </geometry>
+    </collision>
+    <gazebo>
+      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
+      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+    </gazebo>
+
+  </link>
+  <joint  name="RJ0"
+    type="prismatic">
+    <origin
+      xyz="0.029536 0.0133 0.06016"
+      rpy="0 0.5236 0" />
+    <parent
+      link="palm" />
+    <child
+      link="RL0" />
+    <axis
+      xyz="-0.86603 0 -0.5" />
+    <limit lower="0" upper="0.022" effort="200" velocity="1"/> <!-- Adjusted limits and effort -->
+    <dynamics damping="0.1" friction="0.5"/>
+    <mimic
+      joint="LJ0"
+      multiplier="-1.0" />
+  </joint>
+  <link  name="RL1">
+    <inertial>
+      <origin
+        xyz="-0.00036172 -2.2204E-16 0.0047824"
+        rpy="0 0 0" />
+      <mass value="0.02"/> <!-- Reduced mass -->
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.05"/> <!-- Approximate values -->
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/VRL1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 0.85" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/RL1.STL" />
+      </geometry>
+    </collision>
+    <gazebo>
+      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
+      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+    </gazebo>
+
+  </link>
+  <joint  name="RJ1"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="RL0" />
+    <child
+      link="RL1" />
+    <axis
+      xyz="1 0 0" />
+    <limit lower="-0.37" upper="0.37" effort="200" velocity="1"/> <!-- Adjusted limits and effort -->
+    <dynamics damping="0" friction="0.4"/>
+  </joint>
+  <link  name="RL2">
+    <inertial>
+      <origin
+        xyz="1.7518E-05 -0.0078321 0.020868"
+        rpy="0 0 0" />
+      <mass value="0.08"/> <!-- Reduced mass -->
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/VRL2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 0.85" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/RL2.STL" />
+      </geometry>
+    </collision>
+    <gazebo>
+      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
+      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+    </gazebo>
+
+  </link>
+  <joint  name="RJ2"
+    type="revolute">
+    <origin
+      xyz="-0.00135 0 0.0095"
+      rpy="0.21523 0 1.5708" />
+    <parent
+      link="RL1" />
+    <child
+      link="RL2" />
+    <axis
+      xyz="1 0 0" />
+    <limit lower="-1.57" upper="0" effort="200" velocity="1"/> <!-- Adjusted limits and effort -->
+    <dynamics damping="0" friction="0.4"/>
+  </joint>
+  <link  name="RL3">
+    <inertial>
+      <origin
+        xyz="1.6118E-05 -0.0075224 0.017154"
+        rpy="0 0 0" />
+      <mass value="0.08"/> <!-- Reduced mass -->
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> <!-- Approximate values -->
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/VRL3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 0.85" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dexco/meshes/RL3.STL" />
+      </geometry>
+    </collision>
+    <gazebo>
+      <mu1>0</mu1> <!-- Increased dynamic friction coefficient -->
+      <mu2>0.4</mu2> <!-- Increased static friction coefficient -->
+    </gazebo>
+
+  </link>
+  <joint  name="RJ3"
+    type="revolute">
+    <origin
+      xyz="0 0 0.052024"
+      rpy="0.57017 0 0" />
+    <parent
+      link="RL2" />
+    <child
+      link="RL3" />
+    <axis
+      xyz="1 0 0" />
+    <limit lower="-1.57" upper="0" effort="200" velocity="1"/> <!-- Adjusted limits and effort -->
+    <dynamics damping="0" friction="0.4"/>
+  </joint>
+
+  <!-- ros_control plugin -->
+  <!-- <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/dexco</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo> -->
+
+<!-- Gazebo plugin for variable stiffness -->
+  <gazebo>
+    <plugin name="dexco_variable_stiffness_plugin" filename="libdexco_variable_stiffness_plugin.so">
+      <robotNamespace>/dexco</robotNamespace>
+      <jointName>LJ0</jointName>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin name="dexco_variable_stiffness_plugin" filename="libdexco_variable_stiffness_plugin.so">
+      <robotNamespace>/dexco</robotNamespace>
+      <jointName>LJ1</jointName>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin name="dexco_variable_stiffness_plugin" filename="libdexco_variable_stiffness_plugin.so">
+      <robotNamespace>/dexco</robotNamespace>
+      <jointName>LJ2</jointName>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin name="dexco_variable_stiffness_plugin" filename="libdexco_variable_stiffness_plugin.so">
+      <robotNamespace>/dexco</robotNamespace>
+      <jointName>LJ3</jointName>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin name="dexco_variable_stiffness_plugin" filename="libdexco_variable_stiffness_plugin.so">
+      <robotNamespace>/dexco</robotNamespace>
+      <jointName>RJ0</jointName>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin name="dexco_variable_stiffness_plugin" filename="libdexco_variable_stiffness_plugin.so">
+      <robotNamespace>/dexco</robotNamespace>
+      <jointName>RJ1</jointName>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin name="dexco_variable_stiffness_plugin" filename="libdexco_variable_stiffness_plugin.so">
+      <robotNamespace>/dexco</robotNamespace>
+      <jointName>RJ2</jointName>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin name="dexco_variable_stiffness_plugin" filename="libdexco_variable_stiffness_plugin.so">
+      <robotNamespace>/dexco</robotNamespace>
+      <jointName>RJ3</jointName>
+    </plugin>
+  </gazebo>
+
+  <transmission name="tran0">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LJ0">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motorLJ0">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LJ1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motorLJ1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LJ2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motorLJ2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LJ3">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motorLJ3">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RJ0">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motorRJ0">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1.0</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RJ1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motorRJ1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran6">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RJ2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motorRJ2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran7">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RJ3">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motorRJ3">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+</robot>

@@ -1,0 +1,1 @@
+#include <variable_stiffness_plugin/variable_stiffness_plugin.h>
