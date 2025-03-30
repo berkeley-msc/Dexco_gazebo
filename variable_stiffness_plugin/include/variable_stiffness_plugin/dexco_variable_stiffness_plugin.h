@@ -41,7 +41,7 @@ namespace gazebo
 
       // Subscribe to desired joint states topic
       ros::SubscribeOptions so_joint_states = ros::SubscribeOptions::create<sensor_msgs::JointState>(
-          "/joint_states",
+          "/custom_joint_states",
           1,
           boost::bind(&DexcoVariableStiffnessPlugin::OnJointStateMsg, this, _1),
           ros::VoidPtr(), &this->rosQueue);
@@ -140,17 +140,12 @@ namespace gazebo
       auto delta_l_RJ2 = currentPositionl_RJ2 - l0_RJ2;
       auto delta_l_RJ3 = currentPositionl_RJ3 - l0_RJ3;
 
-      // if ((++count) % 1000 == 0){
-      //   // std::cout<< std::fixed << std::setprecision(3) << "\tiLJ0:" << currentPositionq_LJ0  << "\tiLJ1:" << currentPositionq_LJ1 << "\tiLJ2:" << currentPositionq_LJ2 << "\tiLJ3:" << currentPositionq_LJ3 << "\tiRJ0:" << -currentPositionq_LJ0  << "\tiRJ1:" << currentPositionq_RJ1  << "\tiRJ2:" << currentPositionq_RJ2  << "\tiRJ3:" << currentPositionq_RJ3 << std::endl;
-      //   std::cout << std::fixed << std::setprecision(4) << "\tcurrentPositionl_RJ0:" << currentPositionl_RJ0 << std::endl;
-      //   std::cout << std::fixed << std::setprecision(4) << "\tl0_LJ0:" << l0_LJ0  << std::endl;
-      // }
 
-      auto effortl_LJ0 = -400*delta_l_LJ0;
+      auto effortl_LJ0 = -1600*delta_l_LJ0;
       auto effortl_LJ1 = ComputeEffortNonlinear(-l0_LJ1,-delta_l_LJ1);
       auto effortl_LJ2 = ComputeEffortNonlinear(-l0_LJ2,-delta_l_LJ2);
       auto effortl_LJ3 = ComputeEffortNonlinear(-l0_LJ3,-delta_l_LJ3);
-      auto effortl_RJ0 = -400*delta_l_RJ0;
+      auto effortl_RJ0 = -1600*delta_l_RJ0;
       auto effortl_RJ1 = ComputeEffortNonlinear(-l0_RJ1,-delta_l_RJ1);
       auto effortl_RJ2 = ComputeEffortNonlinear(-l0_RJ2,-delta_l_RJ2);
       auto effortl_RJ3 = ComputeEffortNonlinear(-l0_RJ3,-delta_l_RJ3);
@@ -172,13 +167,17 @@ namespace gazebo
       this->joints["RJ2"]->SetForce(0, effortq_RJ2);
       this->joints["RJ3"]->SetForce(0, effortq_RJ3);
       this->joints["RJ0"]->SetForce(0, effortq_RJ0);
+
+      // if ((++count) % 1000 == 0){
+      //   std::cout << std::fixed << std::setprecision(4) << "current q_LJ1: " << currentPositionq_LJ1 << "\tcurrent l1 " << currentPositionl_LJ1 << "\tcurrent l2 " << currentPositionl_LJ2 << "\tl0_LJ1 " << l0_LJ1 << "\tl0_LJ2 " << l0_LJ2 << "\tdelta_l_LJ1 " << delta_l_LJ2 << "\tdelta_l_LJ2 " << delta_l_LJ2  << "\teffortl_LJ1 " << effortl_LJ1 << "\teffortl_LJ2 " << effortl_LJ2 << "\tq0_LJ1 " << q0_LJ1 <<std::endl;
+      // }
     }
 
     // Compute stiffness based on position difference
     private: double ComputeEffortNonlinear(double l0, double delta_l)
     {
       auto y = delta_l; auto x = l0 + 0.02;
-      auto effort = (17.14-560*x-1621*y+162378*x*y-160958*y*y+4360743*x*y*y+13132854*y*y*y);
+      auto effort = (17.14-560*x-1621*y+324757*x*y-160958*y*y+4360743*x*y*y+26265709*y*y*y);
       return effort;
     }
     // Compute stiffness based on stiffness matrix

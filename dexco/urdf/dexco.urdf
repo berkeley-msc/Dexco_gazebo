@@ -315,7 +315,7 @@
       link="RL0" />
     <axis
       xyz="-0.86603 0 -0.5" />
-    <limit lower="0" upper="0.022" effort="200" velocity="1"/> <!-- Adjusted limits and effort -->
+    <limit lower="-1" upper="1" effort="200" velocity="1"/> <!-- Adjusted limits and effort -->
     <dynamics damping="0.1" friction="0.5"/>
     <mimic
       joint="LJ0"
@@ -580,10 +580,10 @@
   <transmission name="tran4">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="RJ0">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motorRJ0">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1.0</mechanicalReduction>
     </actuator>
   </transmission>

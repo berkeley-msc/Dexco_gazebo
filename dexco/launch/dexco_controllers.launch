@@ -22,8 +22,9 @@
   <!-- Load the URDF into the parameter server -->
   <param name="robot_description" command="cat $(find dexco)/urdf/dexco.urdf"/>
 
-  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
-
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+    <remap from="/joint_states" to="/custom_joint_states"/>
+  </node>
   
   <!-- load the transformer to transform the joint state from gui to the control command-->
   <!-- <node name="dexco_joint_state_to_command" pkg="joint_state_to_command" type="dexco_joint_state_to_command" output="screen"/> -->

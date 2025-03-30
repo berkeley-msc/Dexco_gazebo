@@ -1,8 +1,14 @@
 <launch>
-  <!-- Load the URDF into the parameter server -->
-  <param name="robot_description" command="cat $(find dexco)/urdf/cylinder.urdf"/>
+  <arg name="x" default="0.4" />
+  <arg name="y" default="0.3" />
+  <arg name="z" default="0.1" />
+  <arg name="roll" default="1.57" />
+  <arg name="pitch" default="0" />
+  <arg name="yaw" default="0" />
 
-  <!-- Run a node to spawn the URDF model -->
-  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-        args="-urdf -model cylinder_model -param robot_description"/>
+  <!-- Load the URDF into the parameter server -->
+  <param name="cylinder_robot_description" command="cat $(find dexco)/urdf/cylinder.urdf" />
+
+  <!-- Spawn the model -->
+  <node name="spawn_cylinder" pkg="gazebo_ros" type="spawn_model" args="-param cylinder_robot_description -urdf -model cylinder -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)" />
 </launch>
